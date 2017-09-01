@@ -19,17 +19,22 @@ app.use(express.static(path.join(__dirname, '/build')));
 
 
 // encryption
-let encrypted = cipher.update('ric flair put WWE on the map', 'utf8', 'hex');
-encrypted += cipher.final('hex');
-let result = encrypted;
-console.log(result);
+let encryptedText;
+
+function encryptText(string) {
+  let eText = cipher.update(string, 'utf8', 'hex');
+  eText += cipher.final('hex');
+  encryptedText = eText;
+}
+
+encryptText('ric flair put WWE on the map');
 
 // decryption
-let decrypted = decipher.update(result, 'hex', 'utf8');
+let decrypted = decipher.update(encryptedText, 'hex', 'utf8');
 decrypted += decipher.final('utf8');
 console.log(decrypted);
 
-
+// routing
 
 
 
