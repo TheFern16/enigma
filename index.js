@@ -22,33 +22,33 @@ app.use(express.static(path.join(__dirname, '/build')));
 let encryptedText;
 let decryptedText;
 
-function encryptText(text) {
+function encryptText(text, callback) {
   let eText = cipher.update(text, 'utf8', 'hex');
   eText += cipher.final('hex');
-  encryptedText = eText;
+  encryptedText = eText
+  callback(encryptedText);
 }
 
 // decryption
-function decryptText(hashedText) {
+function decryptText(hashedText, callback) {
   let dText = decipher.update(hashedText, 'hex', 'utf8');
   dText += decipher.final('utf8');
-  decryptedText = dText;
+  decryptedText = dText
+  callback(decryptedText);
 }
 
 // routing
 app.post('/api/encrypt/:id', function handleEncrypt(req, res) {
-  encryptText(req.body.message);
-  res.send(encryptedText);
+  encryptText(req.body.message, function(eText) {
+    res.send(eText);
+  });
 });
 
 app.post('/api/decrypt/:id', function handleDecrypt(req, res) {
-  decryptText(req.body.message);
-  res.send(decryptedText);
+  decryptText(req.body.message, function(dText) {
+    res.send(dText);
+  });
 });
-
-
-
-
 
 
 app.listen(port, () => {
