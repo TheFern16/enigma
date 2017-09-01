@@ -36,15 +36,9 @@ function decryptText(hashedText) {
 }
 
 // routing
-
-
-
-
-
-
-
-
-
+app.post('/api/hash/:id', function handleHash(req, res) {
+  console.log(req.body.message);
+});
 
 
 
