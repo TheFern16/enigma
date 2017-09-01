@@ -30,18 +30,21 @@ function encryptText(text) {
 
 // decryption
 function decryptText(hashedText) {
-  let dText = decipher.update(encryptedText, 'hex', 'utf8');
+  let dText = decipher.update(hashedText, 'hex', 'utf8');
   dText += decipher.final('utf8');
   decryptedText = dText;
 }
 
 // routing
-app.post('/api/hash/:id', function handleHash(req, res) {
+app.post('/api/encrypt/:id', function handleEncrypt(req, res) {
   encryptText(req.body.message);
   res.send(encryptedText);
 });
 
-
+app.post('/api/decrypt/:id', function handleDecrypt(req, res) {
+  decryptText(req.body.message);
+  res.send(decryptedText);
+});
 
 
 
