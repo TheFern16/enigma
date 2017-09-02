@@ -21,8 +21,12 @@ class App extends Component {
   render() {
     return (
       <div style={{width: '350px'}}>
-        <InputName />
-        <InputMessage />
+        <InputName
+          name={this.state.name}
+        />
+        <InputMessage
+          message={this.state.message}
+        />
         <DatePicker />
       </div>
     );

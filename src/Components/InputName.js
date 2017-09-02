@@ -1,9 +1,12 @@
 import React from 'react';
+import Input from 'react-toolbox/lib/input';
 
 class InputName extends React.Component {
   render() {
     return (
-      <h1>Input Name</h1>
+      <section>
+        <Input type='text' label='Name' name='name' value={this.props.name} />
+      </section>
     )
   }
 }
