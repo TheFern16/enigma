@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import Input from 'react-toolbox/lib/input';
 
-// import components
+import Input  from 'react-toolbox/lib/input';
+import DatePicker from 'react-toolbox/lib/date_picker/DatePicker';
 
 class App extends Component {
   constructor() {
@@ -18,6 +18,7 @@ class App extends Component {
   }
 
   handleChange(name, value) {
+    console.log(name, value);
     this.setState({...this.state, [name]: value })
   }
 
@@ -30,6 +31,7 @@ class App extends Component {
           <div className="input-group">
             <span className="input-group-addon" id="sizing-addon1">S</span>
             <Input
+              theme={this.props.input}
               type='text'
               label='Name'
               name='name'
@@ -41,13 +43,22 @@ class App extends Component {
           <div className="input-group">
             <Input
               type='text'
-              label='Name'
-              message='message'
+              label='Message'
+              name='message'
               value={this.state.message}
               onChange={this.handleChange.bind(this, 'message')}
               maxLength={16 } />
           </div>
 
+          <div className="input-group">
+            <DatePicker
+              className="table"
+              label='Birthdate'
+              sundayFirstDayOfWeek
+              onChange={this.handleChange.bind(this, 'date')}
+              value={this.state.date}
+            />
+          </div>
 
         </div>
       </div>
