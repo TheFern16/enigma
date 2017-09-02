@@ -1,4 +1,9 @@
 import React, { Component } from 'react';
+
+// import components
+import InputName from './Components/InputName';
+
+
 import { Card, CardMedia, CardTitle, CardText, CardActions } from 'react-toolbox/lib/card/';
 import { Button } from 'react-toolbox/lib/button/Button';
 
@@ -8,11 +13,7 @@ class App extends Component {
   render() {
     return (
       <Card style={{width: '350px'}}>
-        <CardTitle
-          avatar="https://placeimg.com/80/80/animals"
-          title="Avatar style title"
-          subtitle="Subtitle here"
-        />
+        <InputName />
         <CardMedia
           aspectRatio="wide"
           image="https://placeimg.com/800/450/nature"
