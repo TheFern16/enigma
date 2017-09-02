@@ -9,6 +9,13 @@ import DatePicker from './Components/DatePicker';
 
 
 class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      currentText: ''
+    }
+  }
+
   render() {
     return (
       <div style={{width: '350px'}}>
