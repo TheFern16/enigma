@@ -2,12 +2,6 @@ import React, { Component } from 'react';
 import Input from 'react-toolbox/lib/input';
 
 // import components
-import InputName from './Components/InputName';
-import InputMessage from './Components/InputMessage';
-import PickDate from './Components/PickDate';
-import PopUp from './Components/PopUp';
-import Decrypt from './Components/Decrypt';
-
 
 class App extends Component {
   constructor() {
@@ -26,11 +20,6 @@ class App extends Component {
   handleChange(name, value) {
     this.setState({...this.state, [name]: value })
   }
-            // <InputName
-            //   className="form-control"
-            //   name={this.state.name}
-            //   updateName={this.updateName}
-            // />
 
   render() {
     return (
@@ -59,15 +48,7 @@ class App extends Component {
               maxLength={16 } />
           </div>
 
-          <PickDate />
-          <div className="row">
-            <PopUp
-              active={this.state.active}
-            />
-            <Decrypt
-              active={this.state.active}
-            />
-          </div>
+
         </div>
       </div>
     );
