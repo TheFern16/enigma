@@ -3,6 +3,7 @@ import Input from 'react-toolbox/lib/input';
 
 class InputName extends React.Component {
   handleChange() {
+    // console.log(this.newName);
     this.props.updateName(this.newName);
   }
 
@@ -14,8 +15,8 @@ class InputName extends React.Component {
           label='Name'
           name='name'
           value={this.props.name}
-          onChange={this.handleChange.bind(this, 'name')}
-          ref={(input) => this.newName = input}
+          onChange={this.props.updateName(this, 'name')}
+          // ref={(input) => this.newName = input}
         />
       </section>
     )

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Input from 'react-toolbox/lib/input';
 
 // import components
 import InputName from './Components/InputName';
@@ -12,7 +13,7 @@ class App extends Component {
   constructor() {
     super();
 
-    this.updateName = this.updateName.bind(this);
+    // this.updateName = this.updateName.bind(this);
 
     this.state = {
       name: '',
@@ -22,10 +23,14 @@ class App extends Component {
     }
   }
 
-  updateName(name) {
-    const newName = {...this.state.name};
-    console.log(newName);
+  handleChange(name, value) {
+    this.setState({...this.state, [name]: value })
   }
+            // <InputName
+            //   className="form-control"
+            //   name={this.state.name}
+            //   updateName={this.updateName}
+            // />
 
   render() {
     return (
@@ -35,19 +40,23 @@ class App extends Component {
 
           <div className="input-group">
             <span className="input-group-addon" id="sizing-addon1">S</span>
-            <InputName
-              className="form-control"
-              name={this.state.name}
-              updateName={this.updateName}
-            />
+            <Input
+              type='text'
+              label='Name'
+              name='name'
+              value={this.state.name}
+              onChange={this.handleChange.bind(this, 'name')}
+              maxLength={16 } />
           </div>
 
           <div className="input-group">
-            <InputMessage
-              className="form-control"
-              message={this.state.message}
-
-            />
+            <Input
+              type='text'
+              label='Name'
+              message='message'
+              value={this.state.message}
+              onChange={this.handleChange.bind(this, 'message')}
+              maxLength={16 } />
           </div>
 
           <PickDate />
