@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 // import components
 import InputName from './Components/InputName';
 import InputMessage from './Components/InputMessage';
-import DatePicker from './Components/DatePicker';
+import PickDate from './Components/PickDate';
 
 
 
@@ -27,7 +27,7 @@ class App extends Component {
         <InputMessage
           message={this.state.message}
         />
-        <DatePicker />
+        <PickDate />
       </div>
     );
   }
