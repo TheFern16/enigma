@@ -12,7 +12,9 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      currentText: ''
+      name: '',
+      message: '',
+      date: ''
     }
   }
 
