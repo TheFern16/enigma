@@ -1,11 +1,11 @@
 import React from 'react';
 import Dialog from 'react-toolbox/lib/dialog/Dialog';
 
-class PopUp extends React.Component {
+class Decrypt extends React.Component {
   render() {
     return (
       <div>
-        <button label='Show my dialog'>Encrypt</button>
+        <button label='Show my dialog'>Decrypt</button>
         <Dialog
           title='My awesome dialog'
         >
@@ -16,4 +16,4 @@ class PopUp extends React.Component {
   }
 }
 
-export default PopUp;
+export default Decrypt;
