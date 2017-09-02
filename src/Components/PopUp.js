@@ -7,6 +7,7 @@ class PopUp extends React.Component {
       <div>
         <button label='Show my dialog'>Encrypt</button>
         <Dialog
+          active={this.props.active}
           title='My awesome dialog'
         >
           <p>Here you can add arbitrary content. Components like Pickers are using dialogs now.</p>

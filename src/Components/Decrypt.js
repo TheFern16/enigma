@@ -7,6 +7,7 @@ class Decrypt extends React.Component {
       <div>
         <button label='Show my dialog'>Decrypt</button>
         <Dialog
+          active={this.props.active}
           title='My awesome dialog'
         >
           <p>Here you can add arbitrary content. Components like Pickers are using dialogs now.</p>

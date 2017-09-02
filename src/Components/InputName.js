@@ -2,10 +2,21 @@ import React from 'react';
 import Input from 'react-toolbox/lib/input';
 
 class InputName extends React.Component {
+  handleChange() {
+    this.props.updateName(this.newName);
+  }
+
   render() {
     return (
       <section>
-        <Input type='text' label='Name' name='name' value={this.props.name} />
+        <Input
+          type='text'
+          label='Name'
+          name='name'
+          value={this.props.name}
+          onChange={this.handleChange.bind(this, 'name')}
+          ref={(input) => this.newName = input}
+        />
       </section>
     )
   }
