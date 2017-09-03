@@ -17,7 +17,6 @@ class App extends Component {
   }
 
   handleChange(name, value) {
-    console.log(name, value);
     this.setState({...this.state, [name]: value })
   }
 
@@ -50,7 +49,6 @@ class App extends Component {
 
             <div className="input-group">
               <DatePicker
-                className="table"
                 label='Formatted Date'
                 sundayFirstDayOfWeek
                 onChange={this.handleChange.bind(this, 'date')}
