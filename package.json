@@ -32,7 +32,8 @@
       "BUTTON",
       "DATE_PICKER",
       "INPUT",
-      "DIALOG"
+      "DIALOG",
+      "CARD"
     ],
     "customProperties": {
       "animation-duration": "0.3s",

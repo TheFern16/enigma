@@ -18,12 +18,13 @@ class App extends Component {
 
   handleChange(name, value) {
     this.setState({...this.state, [name]: value })
+    console.log(this.state);
   }
 
   render() {
     return (
       <div className="card-deck">
-        <div className="card row align-items-center" style={{ width: '20em'}}>
+        <div className="card row align-items-center" style={{ width: '40em'}}>
           <div className="cardBody">
             <h4 className="card-title">Tovia's Enigma</h4>
 
@@ -52,6 +53,7 @@ class App extends Component {
                 label='Formatted Date'
                 sundayFirstDayOfWeek
                 onChange={this.handleChange.bind(this, 'date')}
+                inputFormat={(value) => `${value.getDate()}/${value.getMonth() + 1}/${value.getFullYear()}`}
                 value={this.state.date}
               />
             </div>
