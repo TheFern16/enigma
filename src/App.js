@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import Input  from 'react-toolbox/lib/input';
 import DatePicker from 'react-toolbox/lib/date_picker/DatePicker';
 import Button from 'react-toolbox/lib/button/Button';
+import Dialog from 'react-toolbox/lib/dialog/Dialog';
 
 class App extends Component {
   constructor() {
@@ -64,6 +65,21 @@ class App extends Component {
 
             <div className="row">
               <Button label='Encrypt' flat onClick={this.handleToggle} />
+                <Dialog
+                  actions={this.actions}
+                  active={this.state.active}
+                  onEscKeyDown={this.handleToggle}
+                  onOverlayClick={this.handleToggle}
+                >
+                  <Input
+                    type='text'
+                    label='Name'
+                    name='name'
+                    value={this.state.name}
+                    onChange={this.handleChange.bind(this, 'name')}
+                  />
+                </Dialog>
+
               <Button label='Decrypt' flat />
             </div>
 
