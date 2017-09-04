@@ -28,7 +28,6 @@ class App extends Component {
       date: this.state.date
     })
     .then((res) => {
-    console.log('ran', this.state, res);
       this.setState({
         encryptedMessage: res.data
       });
@@ -39,8 +38,8 @@ class App extends Component {
     if (this.state.active) {
       this.setState({ active: !this.state.active });
     } else {
-      this.encryptRequest();
       this.setState({ active: !this.state.active });
+      this.encryptRequest();
     }
   }
 
