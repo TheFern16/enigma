@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
 import Input  from 'react-toolbox/lib/input';
 import DatePicker from 'react-toolbox/lib/date_picker/DatePicker';
@@ -9,16 +10,38 @@ class App extends Component {
   constructor() {
     super();
 
+    this.encryptRequest = this.encryptRequest.bind(this);
+
     this.state = {
       name: '',
       message: '',
       date: '',
-      active: false
+      active: false,
+      encryptedMessage: ''
     }
   }
 
+  encryptRequest() {
+    axios.post('/api/encrypt/12345', {
+      name: this.state.name,
+      message: this.state.message,
+      date: this.state.date
+    })
+    .then((res) => {
+    console.log('ran', this.state, res);
+      this.setState({
+        encryptedMessage: res.data
+      });
+    });
+  }
+
   handleToggle = () => {
-    this.setState({active: !this.state.active});
+    if (this.state.active) {
+      this.setState({ active: !this.state.active });
+    } else {
+      this.encryptRequest();
+      this.setState({ active: !this.state.active });
+    }
   }
 
   handleChange(name, value) {
@@ -73,10 +96,10 @@ class App extends Component {
                 >
                   <Input
                     type='text'
-                    label='Name'
+                    label='Message'
                     name='name'
-                    value={this.state.name}
-                    onChange={this.handleChange.bind(this, 'name')}
+                    value={this.state.encryptedMessage}
+                    onChange={this.handleChange.bind(this, 'encryptedMessage')}
                   />
                 </Dialog>
 

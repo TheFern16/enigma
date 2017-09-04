@@ -39,7 +39,12 @@ function decryptText(hashedText, callback) {
 
 // routing
 app.post('/api/encrypt/:id', function handleEncrypt(req, res) {
-  encryptText(req.body.message, function(eText) {
+  const name = req.body.name;
+  const message = req.body.message;
+  const date = req.body.date;
+  const allTogether = `${name} ${message} ${date}`;
+  console.log(req.body);
+  encryptText(allTogether, function(eText) {
     res.send(eText);
   });
 });
