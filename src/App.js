@@ -34,12 +34,33 @@ class App extends Component {
     });
   }
 
+  decryptRequest() {
+    axios.post('/api/decrypt/12345', {
+      encryptedMessage: this.state.encryptedMessage
+    }).then((res) => {
+      this.setState({
+        name: res.name,
+        message: res.message,
+        date: res.date
+      });
+    });
+  }
+
   handleToggle = () => {
     if (this.state.active) {
       this.setState({ active: !this.state.active });
     } else {
       this.setState({ active: !this.state.active });
       this.encryptRequest();
+    }
+  }
+
+  handleDecryptToggle = () => {
+    if (this.state.active) {
+      this.setState({ active: !this.state.active });
+    } else {
+      this.setState({ active: !this.state.active });
+      this.decryptRequest();
     }
   }
 
@@ -102,7 +123,14 @@ class App extends Component {
                   />
                 </Dialog>
 
-              <Button label='Decrypt' flat />
+              <Button label='Decrypt' flat onClick={this.handleDecryptToggle} />
+                <Dialog
+                  actions={this.actions}
+                  active={this.state.active}
+                  onEscKeyDown={this.handleDecryptToggle}
+                  onOverlayClick={this.handleDecryptToggle}
+                >
+                </Dialog>
             </div>
 
           </div>
