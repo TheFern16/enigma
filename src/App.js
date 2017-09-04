@@ -16,6 +16,10 @@ class App extends Component {
     }
   }
 
+  handleToggle = () => {
+    this.setState({active: !this.state.active});
+  }
+
   handleChange(name, value) {
     this.setState({...this.state, [name]: value })
     console.log(this.state);
@@ -59,7 +63,7 @@ class App extends Component {
             </div>
 
             <div className="row">
-              <Button label='Encrypt' flat />
+              <Button label='Encrypt' flat onClick={this.handleToggle} />
               <Button label='Decrypt' flat />
             </div>
 
