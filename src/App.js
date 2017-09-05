@@ -8,9 +8,11 @@ import Dialog from 'react-toolbox/lib/dialog/Dialog';
 
 class App extends Component {
   constructor() {
+    console.log('changed 1');
     super();
 
     this.encryptRequest = this.encryptRequest.bind(this);
+    this.decryptRequest = this.decryptRequest.bind(this);
 
     this.state = {
       name: '',
@@ -31,42 +33,45 @@ class App extends Component {
       this.setState({
         encryptedMessage: res.data
       });
+      console.log('here', this.state.encryptedMessage);
     });
   }
 
   decryptRequest() {
+    console.log('here', this.state.encryptedMessage);
     axios.post('/api/decrypt/12345', {
       encryptedMessage: this.state.encryptedMessage
     }).then((res) => {
+      console.log('response', res);
       this.setState({
         name: res.name,
         message: res.message,
-        date: res.date
+        date: res.date,
+        active: !this.state.active
       });
     });
   }
 
   handleToggle = () => {
-    if (this.state.active) {
+    if (this.state.active && this.state.name !== '') {
+      this.setState({
+        name: '',
+        message: '',
+        date: ''
+      });
       this.setState({ active: !this.state.active });
-    } else {
-      this.setState({ active: !this.state.active });
+    } else if (this.state.name !== '') {
       this.encryptRequest();
-    }
-  }
-
-  handleDecryptToggle = () => {
-    if (this.state.active) {
+      this.setState({ active: !this.state.active });
+    } else if (this.state.name === '') {
       this.setState({ active: !this.state.active });
     } else {
       this.setState({ active: !this.state.active });
-      this.decryptRequest();
     }
   }
 
   handleChange(name, value) {
-    this.setState({...this.state, [name]: value })
-    console.log(this.state);
+    this.setState({...this.state, [name]: value });
   }
 
   render() {
@@ -107,7 +112,7 @@ class App extends Component {
             </div>
 
             <div className="row">
-              <Button label='Encrypt' flat onClick={this.handleToggle} />
+              <Button label='Encrypt' flat onClick={this.handleToggle}>
                 <Dialog
                   actions={this.actions}
                   active={this.state.active}
@@ -117,20 +122,30 @@ class App extends Component {
                   <Input
                     type='text'
                     label='Message'
-                    name='name'
+                    name='encryptedMessage'
                     value={this.state.encryptedMessage}
                     onChange={this.handleChange.bind(this, 'encryptedMessage')}
                   />
                 </Dialog>
+              </Button>
 
-              <Button label='Decrypt' flat onClick={this.handleDecryptToggle} />
+              <Button label='Decrypt' flat onClick={this.handleToggle} >
                 <Dialog
-                  actions={this.actions}
                   active={this.state.active}
-                  onEscKeyDown={this.handleDecryptToggle}
-                  onOverlayClick={this.handleDecryptToggle}
+                  onEscKeyDown={this.handleToggle}
+                  onOverlayClick={this.handleToggle}
                 >
+                  <Input
+                    type='text'
+                    label='Decrypted Message'
+                    name='encryptedMessage'
+                    value={this.state.encryptedMessage}
+                    onChange={this.handleChange.bind(this, 'encryptedMessage')}
+                  />
+                  <Button label="decryptIt" flat onClick={this.decryptRequest} />
                 </Dialog>
+              </Button>
+
             </div>
 
           </div>
@@ -141,4 +156,5 @@ class App extends Component {
 }
 
 export default App;
+
 

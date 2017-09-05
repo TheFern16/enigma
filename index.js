@@ -34,6 +34,7 @@ function decryptText(hashedText, callback) {
   let dText = decipher.update(hashedText, 'hex', 'utf8');
   dText += decipher.final('utf8');
   decryptedText = dText
+  console.log(hashedText, decryptedText, 'here');
   callback(decryptedText);
 }
 
@@ -43,15 +44,20 @@ app.post('/api/encrypt/:id', function handleEncrypt(req, res) {
   const message = req.body.message;
   const date = req.body.date;
   const allTogether = `${name} ${message} ${date}`;
-  console.log(req.body);
   encryptText(allTogether, function(eText) {
     res.send(eText);
   });
 });
 
 app.post('/api/decrypt/:id', function handleDecrypt(req, res) {
-  decryptText(req.body.message, function(dText) {
-    res.send(dText);
+  decryptText(req.body.encryptedMessage, function(resultOfCall) {
+    const arr = resultOfCall.split(' ');
+    const updateMessage = {
+      name: resultOfCall[0],
+      message: resultOfCall[1],
+      date: resultOfCall[2]
+    }
+    res.send(updateMessage);
   });
 });
 
