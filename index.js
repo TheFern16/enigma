@@ -34,7 +34,6 @@ function decryptText(hashedText, callback) {
   let dText = decipher.update(hashedText, 'hex', 'utf8');
   dText += decipher.final('utf8');
   decryptedText = dText
-  console.log(hashedText, decryptedText, 'here');
   callback(decryptedText);
 }
 
@@ -52,7 +51,7 @@ app.post('/api/encrypt/:id', function handleEncrypt(req, res) {
 app.post('/api/decrypt/:id', function handleDecrypt(req, res) {
   decryptText(req.body.encryptedMessage, function(resultOfCall) {
     const arr = resultOfCall.split(' ');
-    const newDate = new Date(s.split('-')[0], s.split('-')[1] - 1, s.split('-')[2].slice(0, 2), s.split(':')[1], s.split(':')[2].slice(0, 2), s.split(':')[2].split('.')[1].slice(0,2))
+    const newDate = new Date(resultOfCall.split('-')[0], resultOfCall.split('-')[1] - 1, resultOfCall.split('-')[2].slice(0, 2), resultOfCall.split(':')[1], resultOfCall.split(':')[2].slice(0, 2), resultOfCall.split(':')[2].split('.')[1].slice(0,2))
 
     const updateMessage = {
       name:  arr[0],

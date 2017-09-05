@@ -8,7 +8,6 @@ import Dialog from 'react-toolbox/lib/dialog/Dialog';
 
 class App extends Component {
   constructor() {
-    console.log('changed 1');
     super();
 
     this.encryptRequest = this.encryptRequest.bind(this);
@@ -24,30 +23,26 @@ class App extends Component {
   }
 
   encryptRequest() {
-    console.log(this.state.date, 'THE DATE');
     axios.post('/api/encrypt/12345', {
       name: this.state.name,
       message: this.state.message,
-      date: this.state.date
+      date: this.state.date || Date.now()
     })
     .then((res) => {
       this.setState({
         encryptedMessage: res.data
       });
-      console.log('here', this.state.encryptedMessage);
     });
   }
 
   decryptRequest() {
-    console.log('here', this.state.encryptedMessage);
     axios.post('/api/decrypt/12345', {
       encryptedMessage: this.state.encryptedMessage
     }).then((res) => {
-      console.log('response', res);
       this.setState({
         name: res.data.name,
         message: res.data.message,
-        date: res.data.date,
+        date: res.data.date || Date.now(),
         active: !this.state.active
       });
     });
