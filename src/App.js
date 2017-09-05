@@ -24,6 +24,7 @@ class App extends Component {
   }
 
   encryptRequest() {
+    console.log(this.state.date, 'THE DATE');
     axios.post('/api/encrypt/12345', {
       name: this.state.name,
       message: this.state.message,
