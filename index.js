@@ -52,10 +52,11 @@ app.post('/api/encrypt/:id', function handleEncrypt(req, res) {
 app.post('/api/decrypt/:id', function handleDecrypt(req, res) {
   decryptText(req.body.encryptedMessage, function(resultOfCall) {
     const arr = resultOfCall.split(' ');
+    console.log(arr);
     const updateMessage = {
-      name: resultOfCall[0],
-      message: resultOfCall[1],
-      date: resultOfCall[2]
+      name:  arr[0],
+      message: arr[1],
+      date: arr[2]
     }
     res.send(updateMessage);
   });

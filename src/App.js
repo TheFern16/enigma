@@ -44,9 +44,9 @@ class App extends Component {
     }).then((res) => {
       console.log('response', res);
       this.setState({
-        name: res.name,
-        message: res.message,
-        date: res.date,
+        name: res.data.name,
+        message: res.data.message,
+        date: res.data.date,
         active: !this.state.active
       });
     });
